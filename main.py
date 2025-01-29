@@ -99,14 +99,15 @@ class Lesson:
         )
 
 
-class PracticeSession:
-    def __init__(self, lesson, language, target_progress=4):
-        self.lesson = lesson
+class AudioPlayer:
+    """Handles text-to-speech playback."""
+
+    def __init__(self, language):
         self.language = language
-        self.target_progress = target_progress
+        pygame.mixer.init()
 
     def play_text(self, text):
-        """Play text audio in the given language."""
+        """Play text as speech."""
         try:
             tts = gTTS(text, lang=self.language)
             audio_data = io.BytesIO()
@@ -119,11 +120,38 @@ class PracticeSession:
         except Exception as e:
             print(f"Error playing text: {e}")
 
+
+class PracticeSession:
+
+    EXIT_COMMANDS = {"exit", "quit", "-e", "-q", "-exit", "-quit"}
+    HELP_COMMANDS = {"help", "-h", "?", "-?", "commands", "-help"}
+    HINT_COMMANDS = {"hint", "-hint"}
+    USAGE_COMMANDS = {"usage", "-usage", "context", "-context", "-u"}
+    SHOW_COMMANDS = {"show", "-show"}
+    EDIT_COMMANDS = {"edit", "-edit"}
+    SKIP_COMMANDS = {"skip", "-skip", "accept", "-accept", "-s"}
+    REPEAT_COMMANDS = {"repeat", "-repeat", "play", "-play"}
+    PROGRESS_COMMANDS = {"progress", "-progress", "-p"}
+
+    def __init__(self, lesson, language, target_progress=4):
+        self.lesson = lesson
+        self.language = language
+        self.target_progress = target_progress
+        self.audio = AudioPlayer(language)
+
     def confirm_choice(self, prompt="Are you sure? (yes/no): "):
         # Ask the user if they want to continue or exit
         print(prompt)
         answer = input(">> ").strip().lower()
         return answer in {"yes", "y"} or answer == ""
+
+    def present_lesson(self):
+        """Present every word and its translation from the lesson list."""
+        for word, data in self.lesson.data.items():
+            print(f"{word} -> {data['translation']}")
+            self.audio.play_text(word)
+            if input("[PRESS ENTER] >>") in self.EXIT_COMMANDS:
+                break
 
     def practice_lesson(self, mode_func):
         """
@@ -194,7 +222,7 @@ class PracticeSession:
                 break
 
     def prompt_translation_from_audio(self, word):
-        self.play_text(word)
+        self.audio.play_text(word)
         print("Translation to English:")
         answer = input(">> ").strip()
         return answer, self.lesson.data[word]["translation"]
@@ -221,55 +249,110 @@ class PracticeSession:
         while True:
             if answer == expected_answer:
                 if mode == self.prompt_target_word_from_translation:
-                    self.play_text(word)
+                    self.audio.play_text(word)
                 print("Correct!")
-                self.lesson.data[word]["progress"] += 1
-                return 0
-            elif answer in {"exit", "quit", "-e", "-q", "-exit", "-quit"}:
+
+                return self.handle_answer(word, True)
+
+            elif answer in self.EXIT_COMMANDS:
                 print("Exiting this mode.")
                 return -1
-            elif answer in {"help", "-h", "?", "-?", "commands", "-help"}:
-                print(
-                    """Commands:
+            elif answer in self.HELP_COMMANDS:
+                self.print_help()
+                answer = input(">> ").strip()
+            elif answer in self.HINT_COMMANDS:
+                print(f"The first letter of the word is '{expected_answer[0]}'.")
+                answer = input(">> ").strip()
+            elif answer in self.USAGE_COMMANDS:
+                self.show_usage(word)
+                answer = input(">> ").strip()
+            elif answer in self.PROGRESS_COMMANDS:
+                print(f"Current progress: {self.lesson.data[word]['progress']}")
+                answer = input(">> ").strip()
+            elif answer in self.SKIP_COMMANDS:
+                print("Skipping this word.")
+                self.lesson.data[word]["progress"] += 1
+                return 0
+            elif answer in self.REPEAT_COMMANDS:
+                print("Repeating the word...")
+                self.audio.play_text(word)
+                answer = input(">> ").strip()
+            elif answer in self.SHOW_COMMANDS:
+                print(f"Word: {word}")
+                answer = input(">> ").strip()
+            elif answer in self.EDIT_COMMANDS:
+                return self.edit_word(word)
+            else:
+                print(f"Incorrect. The correct answer is '{expected_answer}'.")
+                if mode == self.prompt_target_word_from_translation:
+                    self.audio.play_text(expected_answer)
+
+                return self.handle_answer(word, False)
+
+    def edit_word(self, word):
+        """Handles word editing."""
+        data = self.lesson.data[word]
+        new_word = input(f"Current word: {word}\nNew word >> ").strip()
+        new_translation = input(
+            f"Current translation: {data['translation']}\nNew translation >> "
+        ).strip()
+        new_usage = input(
+            f"Current usage: {data.get('usage', '')}\nNew usage >> "
+        ).strip()
+
+        if new_word:
+            data["word"] = new_word
+        if new_translation:
+            data["translation"] = new_translation
+        if new_usage:
+            data["usage"] = new_usage
+        return 1
+
+    def print_help(self):
+        print(
+            """Commands:
     - ['exit', 'quit', '-e', '-q', '-exit', '-quit']: Exits the current mode.
     - ['help', '-h', '?', '-?', 'commands', '-help']: Displays available commands.
     - ['hint', '-hint']: Provides a hint by showing the first letter of the word.
     - ['usage', '-usage', 'context', '-context', '-u']: Displays the usage/context of the word.
     - ['progress', '-progress', '-p']: Shows the current progress of the word.
     - ['skip', '-skip', 'accept', '-accept', '-s']: Skips the current word as if answered correctly.
-    - ['repeat', '-repeat', 'play', '-play']: Repeats the word by playing its audio."""
-                )
-                answer = input(">> ").strip()
-            elif answer in {"hint", "-hint"}:
-                print(f"The first letter of the word is '{expected_answer[0]}'.")
-                answer = input(">> ").strip()
-            elif answer in {"usage", "-usage", "context", "-context", "-u"}:
-                if not self.lesson.data[word]["usage"]:
-                    print("No usage/context provided for this word.")
-                else:
-                    print(f"{self.lesson.data[word]['usage']}")
-                    self.play_text(self.lesson.data[word]["usage"])
-                answer = input(">> ").strip()
-            elif answer in {"progress", "-progress", "-p"}:
-                print(f"Current progress: {self.lesson.data[word]['progress']}")
-                answer = input(">> ").strip()
-            elif answer in {"skip", "-skip", "accept", "-accept", "-s"}:
-                print("Skipping this word.")
-                self.lesson.data[word]["progress"] += 1
-                return 0
-            elif answer in {"repeat", "-repeat", "play", "-play"}:
-                print("Repeating the word...")
-                self.play_text(word)
-                answer = input(">> ").strip()
-            else:
-                print(f"Incorrect. The correct answer is '{expected_answer}'.")
-                if self.confirm_choice("Accept mistake? (yes/no): "):
-                    self.lesson.data[word]["progress"] -= 1
-                    return 1
-                else:
-                    print("Correct!")
-                    self.lesson.data[word]["progress"] += 1
-                    return 0
+    - ['show', '-show']: Prints the question.
+    - ['repeat', '-repeat', 'play', '-play']: Repeats the word by playing its audio.
+    - ['edit', '-edit']: Edits the question, translation and usage."""
+        )
+
+    def show_usage(self, word):
+        """Displays usage/context."""
+        usage = self.lesson.data[word].get("usage")
+        print(usage if usage else "No usage provided.")
+        if usage:
+            self.audio.play_text(usage)
+
+    def handle_answer(self, word, correct):
+        """Handles additional actions after inputting an answer."""
+        command = input("[PRESS ENTER] >>").strip()
+        if command in self.EXIT_COMMANDS:
+            print("Exiting this mode.")
+            return -1
+        if command in self.USAGE_COMMANDS:
+            self.show_usage(word)
+        elif command in self.SHOW_COMMANDS:
+            print(f"Word: {word}")
+        elif command in self.EDIT_COMMANDS:
+            return self.edit_word(word)
+        elif (
+            command in self.SKIP_COMMANDS and not correct
+        ):  # Skip possible only if the answer was incorrect
+            print("Answer accepted")
+            self.lesson.data[word]["progress"] += 1
+        if correct:
+            self.lesson.data[word]["progress"] += 1
+            return 0
+        else:
+            if self.lesson.data[word]["progress"] > 0:
+                self.lesson.data[word]["progress"] -= 1
+            return 1
 
 
 class ProfessorKROApp:
@@ -333,15 +416,18 @@ class ProfessorKROApp:
 
                     while True:
                         print("\nSelect an option:")
-                        print("(1) Practice")
-                        print("(2) Lesson Information")
-                        print("(3) Show words")
-                        print("(4) Reset Progress")
-                        print("(5) Reset to input Progress")
-                        print("(6) Set target Progress")
-                        print("(7) Quit lesson")
+                        print("(1) Learn")
+                        print("(2) Practice")
+                        print("(3) Lesson Information")
+                        print("(4) Show words")
+                        print("(5) Reset Progress")
+                        print("(6) Reset to input Progress")
+                        print("(7) Set target Progress")
+                        print("(8) Quit lesson")
                         option = input(">> ").strip()
                         if option == "1":
+                            session.present_lesson()
+                        elif option == "2":
                             while True:
                                 if (
                                     len(
@@ -370,7 +456,7 @@ class ProfessorKROApp:
                                 )
                                 print("(4) Exit")
                                 mode = input(">> ").strip()
-                                pygame.mixer.init()
+                                # pygame.mixer.init()
                                 if mode == "1":
                                     session.practice_lesson(
                                         lambda lesson_data, language, word: session.general_prompt(
@@ -397,14 +483,14 @@ class ProfessorKROApp:
                                     break
                                 else:
                                     print("Invalid choice. Please try again.")
-                        elif option == "2":
-                            lesson.lesson_info(language, self.target_progress)
                         elif option == "3":
-                            lesson.show_words()
+                            lesson.lesson_info(language, self.target_progress)
                         elif option == "4":
+                            lesson.show_words()
+                        elif option == "5":
                             if session.confirm_choice():
                                 lesson.reset_progress()
-                        elif option == "5":
+                        elif option == "6":
                             if session.confirm_choice():
                                 print("Enter progress value to set:")
                                 progress = input(">> ").strip()
@@ -414,14 +500,14 @@ class ProfessorKROApp:
                                     print(f"Progress set to {progress} for all words.")
                                 except ValueError:
                                     print("Invalid input.")
-                        elif option == "6":
+                        elif option == "7":
                             print("Enter goal progress value:")
                             try:
                                 self.target_progress = int(input(">> ").strip())
                                 print(f"Goal progress set to {self.target_progress}.")
                             except ValueError:
                                 print("Invalid input, must be integer.")
-                        elif option == "7":
+                        elif option == "8":
                             lesson.save_lesson()
                             break
                         else:

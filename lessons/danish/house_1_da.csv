@@ -1,40 +1,40 @@
 word,translation,progress,usage
-vinduet,window,2,Jeg åbnede et vindue for at lufte ud.
-håndtaget,handle,2,Håndtaget på døren er brækket.
-radiatoren,radiator,2,Radiatorerne var varme hele natten.
-bordet,table,2,Vi sætter os ved bordet og spiser.
-dugen,tablecloth,2,Dugen blev foldet og lagt i skabet.
-mikroovnen,microwave oven,2,Mikroovnen blev brugt til at varme maden.
-brødristeren,toaster,2,Brødristeren kan riste to stykker brød ad gangen.
-skraldespanden,trash bin,2,Skraldespanden i køkkenet er fuld.
-vasken,sink,2,Tallerkenerne blev vasket op i vasken.
-opvaskemaskinen,dish washer,2,Opvaskemaskinen blev fyldt med service.
-opvaskemidlet,dish soap,2,Vi købte nyt opvaskemiddel i dag.
-håndklædet,towel,2,Håndklæderne hænger på knagen.
-svampen,sponge,2,Jeg brugte en svamp til at rengøre bordet.
-lampen,lamp,2,Lampen lyser ikke
-krukken,jar,2,Krukkerne på hylden indeholder krydderier.
-flasken,bottle,2,Flaskerne stod på gulvet i køkkenet.
-køkkenrullen,paper towel,2,Vi tørrede spildet op med køkkenrullen.
-mokkamaskinen,mokka,2,Mokkamaskinen brygger en kraftig kaffe.
-skeen,spoon,2,Jeg brugte en ske til at røre i suppen.
-gaflen,fork,2,Gaflerne ligger i skuffen.
-kniven,knife,2,Kniven var meget skarp.
-skålen,bowl,2,Skålene blev brugt til salaten.
-panden,pan,2,Pandekagerne blev stegt på en pande.
-ovnshandsken,oven glove,2,Ovnshandskerne beskytter mod varmen.
-piskeriset,whisk,2,Piskeriset blev brugt til at lave flødeskum.
-plastikposen,plastic bag,2,Plastikposerne lå ved kassen i butikken.
-kogekedlen,boiler,2,Kogekedlen fløjtede
-fryseren,freezer,2,Fryseren var fyldt med is.
-køleskabet,fridge,2,Køleskabet var tomt efter festen.
-ovnen,oven,2,Ovnen blev forvarmet til 200 grader.
-komfuret,stove,2,Komfuret blev tændt for at koge pasta.
-stikkontakten,socket,2,Stikkontakterne sidder langs væggen.
-krydderierne,spices,2,Krydderierne gav retten ekstra smag.
-saltet,salt,2,Saltet blev drysset over kartoflerne.
-peberen,pepper,2,Peberen blev malet friskt over retten.
-vasen,vase,2,Vaserne på bordet var fyldt med blomster.
-stolen,chair,2,Stolene blev stillet rundt om bordet.
-sofaen,sofa,2,Sofaen var meget behagelig.
-støvsugeren,vacuum cleaner,2,Jeg brugte støvsugeren til at rense gulvet.
+vinduet,window,4,"Jeg åbnede et vindue for at lufte ud."
+håndtaget,handle,4,"Håndtaget på døren er brækket."
+radiatoren,radiator,4,"Radiatorerne var varme hele natten."
+bordet,table,2,"Vi sætter os ved bordet og spiser aftensmad."
+dugen,tablecloth,4,"Dugen blev foldet og lagt i skabet."
+mikroovnen,microwave oven,1,"Mikroovnen blev brugt til at varme maden op."
+brødristeren,toaster,0,"Brødristeren kan riste to stykker brød ad gangen."
+skraldespanden,trash bin,2,"Skraldespanden i køkkenet er fuld."
+vasken,sink,3,"Tallerkenerne blev vasket op i vasken."
+opvaskemaskinen,dish washer,2,"Opvaskemaskinen blev fyldt med service og sat i gang."
+opvaskemidlet,dish soap,2,"Vi købte nyt opvaskemiddel i dag."
+håndklædet,towel,2,"Håndklæderne hænger på knagen."
+svampen,sponge,2,"Jeg brugte en svamp til at rengøre bordet."
+lampen,lamp,2,"Lampen lyser ikke, fordi pæren er gået."
+krukken,jar,2,"Krukkerne på hylden indeholder krydderier."
+flasken,bottle,2,"Flaskerne stod på gulvet i køkkenet."
+køkkenrullen,paper towel,2,"Vi tørrede spildet op med køkkenrullen."
+mokkamaskinen,mokka,2,"Mokkamaskinen brygger en kraftig kaffe."
+skeen,spoon,2,"Jeg brugte en ske til at røre i suppen."
+gaflen,fork,2,"Gaflerne ligger i skuffen."
+kniven,knife,2,"Kniven var meget skarp."
+skålen,bowl,2,"Skålene blev brugt til salaten."
+panden,pan,2,"Pandekagerne blev stegt på en pande."
+ovnshandsken,oven glove,2,"Ovnshandskerne beskytter mod varmen."
+piskeriset,whisk,2,"Piskeriset blev brugt til at lave flødeskum."
+plastikposen,plastic bag,2,"Plastikposerne lå ved kassen i butikken."
+kogekedlen,boiler,2,"Kogekedlen fløjtede, da vandet kogte."
+fryseren,freezer,2,"Fryseren var fyldt med is."
+køleskabet,fridge,2,"Køleskabet var tomt efter festen."
+ovnen,oven,2,"Ovnen blev forvarmet til 200 grader."
+komfuret,stove,2,"Komfuret blev tændt for at koge pasta."
+stikkontakten,socket,2,"Stikkontakterne sidder langs væggen."
+krydderierne,spices,2,"Krydderierne gav retten ekstra smag."
+saltet,salt,2,"Saltet blev drysset over kartoflerne."
+peberen,pepper,2,"Peberen blev malet friskt over retten."
+vasen,vase,2,"Vaserne på bordet var fyldt med blomster."
+stolen,chair,2,"Stolene blev stillet rundt om bordet."
+sofaen,sofa,2,"Sofaen var meget behagelig at sidde i."
+støvsugeren,vacuum cleaner,2,"Jeg brugte støvsugeren til at rense gulvet."
