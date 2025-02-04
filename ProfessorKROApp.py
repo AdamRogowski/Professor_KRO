@@ -153,7 +153,12 @@ class ProfessorKROApp:
                         elif option == "7":
                             print("Enter goal progress value:")
                             try:
+                                # session.target_progress = int(input(">> ").strip())
                                 self.target_progress = int(input(">> ").strip())
+                                lesson.save_lesson()
+                                session = PracticeSession(
+                                    lesson, language, self.target_progress
+                                )
                                 print(f"Goal progress set to {self.target_progress}.")
                             except ValueError:
                                 print("Invalid input, must be integer.")

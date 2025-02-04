@@ -21,6 +21,16 @@ class PracticeSession:
         self.target_progress = target_progress
         self.audio = AudioPlayer(language)
 
+    @property
+    def target_progress(self):
+        return self._target_progress
+
+    @target_progress.setter
+    def target_progress(self, value):
+        if value < 1:
+            raise ValueError("Target progress must be at least 1.")
+        self._target_progress = value
+
     def confirm_choice(self, prompt="Are you sure? (yes/no): "):
         # Ask the user if they want to continue or exit
         print(prompt)
@@ -98,9 +108,11 @@ class PracticeSession:
             # Check if all words in the cycle have had their progress decreased
             if all(cycle_progress_increased[word] for word in self.lesson.data):
                 print("Lesson complete!")
+                self.lesson.save_lesson()
                 break
 
             if not self.confirm_choice("Do you want to start a new lesson? (yes/no): "):
+                self.lesson.save_lesson()
                 break
 
     def prompt_translation_from_audio(self, word):
