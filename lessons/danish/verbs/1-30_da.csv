@@ -1,31 +1,31 @@
 word,translation,progress,usage
-"være,var,er blevet",to be,1,"Han er blevet syg hele ugen."
-"have,havde,har haft",to have,1,"Hun har haft en kat som barn."
-"gøre,gjorde,har gjort",to do,1,"Han har gjort sit bedste."
+"være,var,har været",to be,3,Han har været syg hele ugen.
+"have,havde,har haft",to have,2,Hun har haft en kat som barn.
+"gøre,gjorde,har gjort",to do,3,Han har gjort sit bedste.
 "sige,sagde,har sagt",to say,1,"Hun har sagt, at hun ville komme senere."
-"få,fik,har fået",to get,1,"Jeg har fået en gave."
-"komme,kom,er kommet",to come,1,"Han er kommet sent i dag."
-"se,så,har set",to see,1,"Jeg har set den film før."
-"kan,kunne,har kunnet",can/able to,1,"Han har kunnet løbe hurtigt."
-"ville,ville,har villet",to want/would,1,"Hun har villet rejse til Spanien."
-"gå,gik,er/har gået",to go,1,"Han er gået hjem. Han har gået en lang tur."
-"give,gav,har givet",to give,1,"Hun har givet ham en gave."
-"tage,tog,har taget",to take,1,"Han har taget toget til arbejde."
-"skulle,skulle,har skullet",should/must/have to,1,"Jeg har skullet arbejde i går."
-"lade,lod,har ladet",to let,1,"Hun har ladet børnene lege udenfor."
-"vide,vidste,har vidst",to know,1,"Jeg har vidst det længe."
-"blive,blev,er blevet",to become,1,"Han er blevet læge efter mange års studier."
-"finde,fandt,har fundet",to find,1,"Hun har fundet sine nøgler i tasken."
-"stå,stod,har stået",to stand,1,"Han har stået ved døren og ventet."
-"tænke,tænkte,har tænkt",to think,1,"Jeg har tænkt meget over dit forslag."
-"mene,mente,har ment",to mean,1,"Han har ment, at det var en god idé."
-"synes,syntes,har syntes",to think (opinion),1,"Jeg har syntes, at maden var god."
-"føle,følte,har følt",to feel,1,"Hun har følt sig træt efter arbejdet."
-"leve,levede,har levet",to live,1,"De har levet i Danmark i mange år."
-"elske,elskede,har elsket",to love,1,"Han har elsket hende dybt."
-"arbejde,arbejdede,har arbejdet",to work,1,"Jeg har arbejdet hele dagen."
-"spise,spiste,har spist",to eat,1,"Vi har spist aftensmad sammen."
-"læse,læste,har læst",to read,1,"Han har læst mange bøger."
-"skrive,skrev,har skrevet",to write,1,"Hun har skrevet et langt brev."
-"bo,boede,har boet",to live (reside),1,"De har boet i en lille lejlighed."
-"forstå,forstod,har forstået",to understand,1,"Jeg har aldrig forstået den regel."
+"få,fik,har fået",to get,3,Jeg har fået en gave.
+"komme,kom,er kommet",to come,3,Han er kommet sent i dag.
+"se,så,har set",to see,2,Jeg har set den film før.
+"kunne,kunne,har kunnet",can/able to,2,Han har kunnet løbe hurtigt.
+"ville,ville,har villet",to want/would,3,Hun har villet rejse til Spanien.
+"gå,gik,er/har gået",to go,3,Han er gået hjem. Han har gået en lang tur.
+"give,gav,har givet",to give,1,Hun har givet ham en gave.
+"tage,tog,har taget",to take,3,Han har taget toget til arbejde.
+"skulle,skulle,har skullet",should/must/have to,3,Jeg har skullet arbejde i går.
+"lade,lod,har ladet",to let,1,Hun har ladet børnene lege udenfor.
+"vide,vidste,har vidst",to know,2,Jeg har vidst det længe.
+"blive,blev,er blevet",to become,2,Han er blevet læge efter mange års studier.
+"finde,fandt,har fundet",to find,2,Hun har fundet sine nøgler i tasken.
+"stå,stod,har stået",to stand,2,Han har stået ved døren og ventet.
+"tænke,tænkte,har tænkt",to think,2,Jeg har tænkt meget over dit forslag.
+"mene,mente,har ment",to mean,2,"Han har ment, at det var en god idé."
+"synes,syntes,har syntes",to think (opinion),2,"Jeg har syntes, at maden var god."
+"føle,følte,har følt",to feel,2,Hun har følt sig træt efter arbejdet.
+"leve,levede,har levet",to live,2,De har levet i Danmark i mange år.
+"elske,elskede,har elsket",to love,2,Han har elsket hende dybt.
+"arbejde,arbejdede,har arbejdet",to work,2,Jeg har arbejdet hele dagen.
+"spise,spiste,har spist",to eat,2,Vi har spist aftensmad sammen.
+"læse,læste,har læst",to read,2,Han har læst mange bøger.
+"skrive,skrev,har skrevet",to write,2,Hun har skrevet et langt brev.
+"bo,boede,har boet",to live (reside),2,De har boet i en lille lejlighed.
+"forstå,forstod,har forstået",to understand,2,Jeg har aldrig forstået den regel.

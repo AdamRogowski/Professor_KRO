@@ -1,13 +1,13 @@
 import os
 import sys
-from constants import LANG_NAME_MAP, LESSONS_DIR
+from constants import LANG_NAME_MAP, LESSONS_DIR, TARGET_PROGRESS
 from Lesson import Lesson
 from PracticeSession import PracticeSession
 
 
 class ProfessorKROApp:
     def __init__(self):
-        self.target_progress = 4
+        self.target_progress = TARGET_PROGRESS
 
     def extract_lang(self, file_path):
         return file_path.split("_")[-1].split(".")[0]
